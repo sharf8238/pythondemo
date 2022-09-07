@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pyeven.git']]])
+            }
+        }
+        stage('Build') {
+            steps {
+                git branch: 'main', credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pyeven.git'
+                sh 'python3 hello.py'
+                sh 'javac hello.java'
+                sh 'java hello'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Tested the results"
+            }
+        }
+    }
+}
