@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pyeven.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pythondemo.git']]])
             }
         }
         stage('Build') {
             steps {
-                git branch: 'main', credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pyeven.git'
+                git branch: 'main', credentialsId: 'sharf8238', url: 'https://github.com/sharf8238/pythondemo.git'
                 sh 'python3 hello.py'
                 sh 'javac hello.java'
                 sh 'java hello'
